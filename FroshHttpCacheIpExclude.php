@@ -14,10 +14,10 @@ class FroshHttpCacheIpExclude extends Plugin
 {
     const CONFIG_PHP_REQUIRE = 'require_once __DIR__ . \'/custom/plugins/FroshHttpCacheIpExclude/Components/IpExcludeStore.php\';';
 
-    const CONFIG_STORE_CLASS = 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore';
+    const CONFIG_STORE_CLASS = 'FroshHttpCacheIpExclude\\\Components\\\IpExcludeStore';
 
     const CONFIG_PHP_PROPERTY = "   'httpcache' => [
-        'storeClass' => 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore',
+        'storeClass' => 'FroshHttpCacheIpExclude\\\Components\\\IpExcludeStore',
         'extended' => [
             'passedStoreClass' => '',
             'ipExcludes' => [],

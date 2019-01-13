@@ -12,7 +12,7 @@ After the installation your `config.php` should start like this:
 require_once __DIR__ . '/custom/plugins/FroshHttpCacheIpExclude/Components/IpExcludeStore.php';
 return [
    'httpcache' => [
-        'storeClass' => 'FroshHttpCacheIpExclude\Components\IpExcludeStore',
+        'storeClass' => 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore',
         'extended' => [
             'passedStoreClass' => '',
             'ipExcludes' => [],
