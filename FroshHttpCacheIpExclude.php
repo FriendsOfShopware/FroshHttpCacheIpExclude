@@ -5,10 +5,7 @@ namespace FroshHttpCacheIpExclude;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\DeactivateContext;
-use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
-use Shopware\Components\Plugin\Context\UpdateContext;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Class FroshHttpCacheIpExclude
@@ -17,7 +14,7 @@ class FroshHttpCacheIpExclude extends Plugin
 {
     const CONFIG_PHP_REQUIRE = 'require_once __DIR__ . \'/custom/plugins/FroshHttpCacheIpExclude/Components/IpExcludeStore.php\';';
 
-    CONST CONFIG_STORE_CLASS = 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore';
+    const CONFIG_STORE_CLASS = 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore';
 
     const CONFIG_PHP_PROPERTY = "   'httpcache' => [
         'storeClass' => 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore',

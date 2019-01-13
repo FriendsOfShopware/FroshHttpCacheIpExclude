@@ -47,7 +47,7 @@ class IpExcludeStore extends BlackHoleStore
      *
      * @return mixed
      */
-    function __get($name)
+    public function __get($name)
     {
         return $this->store->$name;
     }
@@ -56,7 +56,7 @@ class IpExcludeStore extends BlackHoleStore
      * @param string $name
      * @param mixed  $value
      */
-    function __set($name, $value)
+    public function __set($name, $value)
     {
         $this->store->$name = $value;
     }
@@ -67,7 +67,7 @@ class IpExcludeStore extends BlackHoleStore
      *
      * @return mixed
      */
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         return call_user_func_array([
                 $this->store,
