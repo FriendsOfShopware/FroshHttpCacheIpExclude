@@ -4,9 +4,12 @@ namespace FroshHttpCacheIpExclude\Components;
 
 use Shopware\Components\HttpCache\BlackHoleStore;
 use Shopware\Components\HttpCache\Store;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-class IpExcludeStore extends BlackHoleStore
+class IpExcludeStore implements StoreInterface
 {
     private $store;
 
@@ -23,7 +26,7 @@ class IpExcludeStore extends BlackHoleStore
             is_array($options['extended']['ipExcludes']) &&
             in_array($_SERVER['REMOTE_ADDR'], $options['extended']['ipExcludes'])
         ) {
-            $this->store = $this;
+            $this->store = new BlackHoleStore();
 
             return;
         }
@@ -75,5 +78,69 @@ class IpExcludeStore extends BlackHoleStore
             ],
             $arguments
         );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function lookup(Request $request)
+    {
+        return $this->store->lookup($request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function write(Request $request, Response $response)
+    {
+        return $this->store->write($request, $response);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function invalidate(Request $request)
+    {
+        $this->store->invalidate($request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function lock(Request $request)
+    {
+        return $this->store->lock($request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function unlock(Request $request)
+    {
+        return $this->store->unlock($request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isLocked(Request $request)
+    {
+        return $this->store->isLocked($request);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function purge($url)
+    {
+        return $this->store->purge($url);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function cleanup()
+    {
+        $this->store->cleanup();
     }
 }
