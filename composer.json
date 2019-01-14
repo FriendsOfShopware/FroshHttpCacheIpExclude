@@ -1,5 +1,5 @@
 {
-  "name": "frosh/frosh-http-cache-ip-exclude",
+  "name": "frosh/http-cache-ip-exclude",
   "keywords": ["http", "cache", "exclude", "ip", "filter", "development", "shopware", "shopware-plugin"],
   "description": "Exclude IPs from Shopware HTTP Cache",
   "license": "MIT",

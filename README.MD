@@ -6,6 +6,18 @@ This plugin configures Shopware to use a custom store for the HTTP Cache which i
 skipping the HTTP Cache delivery for the provided IP addresses. Useful for testing/debugging in production environments, when
 there is no alternative.
 
+## Installation
+
+* Clone this repository into a folder **FroshHttpCacheIpExclude** within the **custom/plugins** directory of the Shopware installation.
+* Install the plugin through the Plugin-Manager within the Shopware backend.
+
+
+### Install with composer
+* Change to your root installation of shopware
+* Run command `composer require frosh/http-cache-ip-exclude` and install and activate plugin with Plugin Manager 
+
+## Usage
+
 After the installation your `config.php` should look something like this:
 
 ```php
