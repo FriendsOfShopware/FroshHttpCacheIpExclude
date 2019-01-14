@@ -21,7 +21,7 @@ return array (
     'storeClass' => 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore',
     'extended' => 
     array (
-      'passedStoreClass' => '',
+      'passedStoreClass' => NULL,
       'ipExcludes' => 
       array (
       ),

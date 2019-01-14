@@ -66,7 +66,7 @@ class FroshHttpCacheIpExclude extends Plugin
 
         $config['httpcache']['storeClass'] = self::CONFIG_STORE_CLASS;
         $config['httpcache']['extended'] = [
-            'passedStoreClass' => '',
+            'passedStoreClass' => null,
             'ipExcludes' => [],
             'paramExcludes' => [],
             'cookieExcludes' => [],
