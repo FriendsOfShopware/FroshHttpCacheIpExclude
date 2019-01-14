@@ -16,6 +16,7 @@ return [
         'extended' => [
             'passedStoreClass' => '',
             'ipExcludes' => [],
+            'paramExcludes' => [],
         ],
     ],
     'db' => [
@@ -27,6 +28,8 @@ config file prior to the installation. Also note the use of short array syntax. 
 
 Use the `passedStoreClass` property under `extended` to provide a custom store class that will then be passed through
 the `IpExcludeStore`.
+
+Additionally you can use `paramExcludes` to define a list of GET parameters to circumvent the cache.
 
 Use the `ipExcludes` property under `extended` for an array of IP addresses that will subsequently not be served
 cached pages.

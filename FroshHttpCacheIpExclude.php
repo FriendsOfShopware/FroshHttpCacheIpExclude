@@ -21,6 +21,7 @@ class FroshHttpCacheIpExclude extends Plugin
         'extended' => [
             'passedStoreClass' => '',
             'ipExcludes' => [],
+            'paramExcludes' => [],
         ],
     ],";
 

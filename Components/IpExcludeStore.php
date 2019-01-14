@@ -21,11 +21,7 @@ class IpExcludeStore implements StoreInterface
         array $options,
         HttpKernelInterface $kernel
     ) {
-        if (
-            !empty($options['extended']['ipExcludes']) &&
-            is_array($options['extended']['ipExcludes']) &&
-            in_array($_SERVER['REMOTE_ADDR'], $options['extended']['ipExcludes'])
-        ) {
+        if ($this->useBlackHoleStore($options)) {
             $this->store = new BlackHoleStore();
 
             return;
@@ -142,5 +138,34 @@ class IpExcludeStore implements StoreInterface
     public function cleanup()
     {
         $this->store->cleanup();
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return bool
+     */
+    private function useBlackHoleStore(array $options)
+    {
+        if (
+            !empty($options['extended']['ipExcludes']) &&
+            is_array($options['extended']['ipExcludes']) &&
+            in_array($_SERVER['REMOTE_ADDR'], $options['extended']['ipExcludes'])
+        ) {
+            return true;
+        }
+
+        if (
+            !empty($options['extended']['paramExcludes']) &&
+            is_array($options['extended']['paramExcludes'])
+        ) {
+            foreach ($options['extended']['paramExcludes'] as $param) {
+                if (isset($_GET[$param])) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
