@@ -11,7 +11,10 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class IpExcludeStore implements StoreInterface
 {
-    private $store;
+    /**
+     * @var StoreInterface
+     */
+    public $store;
 
     /**
      * @param array                                $options

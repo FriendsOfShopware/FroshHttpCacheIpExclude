@@ -1,5 +1,6 @@
 # Shopware HTTP Cache IP Filter/Exclude
 
+[![Travis CI](https://travis-ci.org/FriendsOfShopware/FroshHttpCacheIpExclude.svg?branch=master)](https://travis-ci.org/FriendsOfShopware/FroshHttpCacheIpExclude)
 [![Join the chat at https://gitter.im/FriendsOfShopware/Lobby](https://badges.gitter.im/FriendsOfShopware/Lobby.svg)](https://gitter.im/FriendsOfShopware/Lobby)
 
 This plugin configures Shopware to use a custom store for the HTTP Cache which includes an IP filter, effectively
