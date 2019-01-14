@@ -12,18 +12,9 @@ use Shopware\Components\Plugin\Context\UninstallContext;
  */
 class FroshHttpCacheIpExclude extends Plugin
 {
-    const CONFIG_PHP_REQUIRE = 'require_once __DIR__ . \'/custom/plugins/FroshHttpCacheIpExclude/Components/IpExcludeStore.php\';';
+    const CONFIG_PHP_REQUIRE = "require_once __DIR__ . '/custom/plugins/FroshHttpCacheIpExclude/Components/IpExcludeStore.php';\r\n";
 
-    const CONFIG_STORE_CLASS = 'FroshHttpCacheIpExclude\\\Components\\\IpExcludeStore';
-
-    const CONFIG_PHP_PROPERTY = "   'httpcache' => [
-        'storeClass' => 'FroshHttpCacheIpExclude\\\Components\\\IpExcludeStore',
-        'extended' => [
-            'passedStoreClass' => '',
-            'ipExcludes' => [],
-            'paramExcludes' => [],
-        ],
-    ],";
+    const CONFIG_STORE_CLASS = 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore';
 
     /**
      * @param ActivateContext $context
@@ -56,16 +47,12 @@ class FroshHttpCacheIpExclude extends Plugin
         return __DIR__ . '/../../../config.php';
     }
 
-    private function hasConfigValue($value)
+    /**
+     * @return array
+     */
+    private function getConfig()
     {
-        $config = require $this->getConfigPath();
-
-        return isset($config[$value]);
-    }
-
-    private function getConfigContent()
-    {
-        return file_get_contents($this->getConfigPath());
+        return require $this->getConfigPath();
     }
 
     /**
@@ -73,50 +60,34 @@ class FroshHttpCacheIpExclude extends Plugin
      */
     private function addConfigStoreClass()
     {
-        $configContent = $this->getConfigContent();
-        $search = 'return [';
+        $config = $this->getConfig();
 
-        if (!$this->hasConfigValue('httpcache')) {
-            $configContent = str_replace(
-                $search,
-                $search . "\r\n" . self::CONFIG_PHP_PROPERTY,
-                $configContent
-            );
-        } else {
-            $configContent = str_replace(
-                '\'storeClass\' => null',
-                '\'storeClass\' => \'' . self::CONFIG_STORE_CLASS . '\'',
-                $configContent
-            );
-        }
+        $configString = "<?php\r\n\r\n" . self::CONFIG_PHP_REQUIRE;
 
-        if (strpos($configContent, self::CONFIG_PHP_REQUIRE) === false) {
-            $configContent = str_replace(
-                $search,
-                self::CONFIG_PHP_REQUIRE . "\r\n" . $search,
-                $configContent
-            );
-        }
+        $config['httpcache']['storeClass'] = self::CONFIG_STORE_CLASS;
+        $config['httpcache']['extended'] = [
+            'passedStoreClass' => '',
+            'ipExcludes' => [],
+            'paramExcludes' => [],
+            'cookieExcludes' => [],
+        ];
 
-        file_put_contents($this->getConfigPath(), $configContent);
+        $configString .= 'return ' . var_export($config, true) . ';';
+
+        file_put_contents($this->getConfigPath(), $configString);
     }
 
     private function removeConfigStoreClass()
     {
-        $configContent = $this->getConfigContent();
+        $config = $this->getConfig();
 
-        $configContent = str_replace(
-            self::CONFIG_PHP_REQUIRE,
-            '',
-            $configContent
-        );
+        $configString = "<?php\r\n\r\n";
 
-        $configContent = str_replace(
-            "'" . self::CONFIG_STORE_CLASS . "'",
-            'null',
-            $configContent
-        );
+        unset($config['httpcache']['storeClass']);
+        unset($config['httpcache']['extended']);
 
-        file_put_contents($this->getConfigPath(), $configContent);
+        $configString .= 'return ' . var_export($config, true) . ';';
+
+        file_put_contents($this->getConfigPath(), $configString);
     }
 }

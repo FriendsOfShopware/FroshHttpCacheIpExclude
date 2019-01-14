@@ -166,6 +166,17 @@ class IpExcludeStore implements StoreInterface
             }
         }
 
+        if (
+            !empty($options['extended']['cookieExcludes']) &&
+            is_array($options['extended']['cookieExcludes'])
+        ) {
+            foreach ($options['extended']['cookieExcludes'] as $cookie) {
+                if (isset($_COOKIE[$cookie])) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }
