@@ -1,0 +1,56 @@
+<div>This plugin configures Shopware to use a custom store for the HTTP Cache which includes an IP filter, effectively
+    skipping the HTTP Cache delivery for the provided IP addresses. The cache can also be skipped by pre-defined URL
+    parameters and cookies if set.
+    Useful for testing/debugging in production environments, when
+    there is no alternative.
+</div>
+<div><br></div>
+<div>
+    <p>After the installation your <em>config.php</em> should look something like this:</p>
+
+    <pre>
+    require_once __DIR__ . '/custom/plugins/FroshHttpCacheIpExclude/Components/IpExcludeStore.php';
+    return array (
+      'db' =>
+      array (
+        // ...
+      ),
+      // ...
+      'httpcache' =>
+      array (
+        'storeClass' => 'FroshHttpCacheIpExclude\\Components\\IpExcludeStore',
+        'extended' =>
+        array (
+          'passedStoreClass' => NULL,
+          'ipExcludes' =>
+          array (
+          ),
+          'paramExcludes' =>
+          array (
+          ),
+          'cookieExcludes' =>
+          array (
+          ),
+        ),
+      ),
+    );
+    </pre>
+
+    <p>Use the <em>ipExcludes</em> property under <em>extended</em> for an array of IP addresses that will subsequently not be served
+        cached pages.</p>
+
+    <p>Use the <em>passedStoreClass</em> property under <em>extended</em> to provide a custom store class that will then be passed through
+        the <em>IpExcludeStore</em>.</p>
+
+    <p>Additionally you can use <em>paramExcludes</em> to define a list of GET parameters
+        or <em>cookieExcludes</em> to define a list of cookies that, if set, will circumvent the cache.</p>
+</div>
+<div><br></div>
+<div>This plugin is part of the Github Organization&nbsp;<a href="https://github.com/FriendsOfShopware/" target="_blank"
+                                                            style="font-size: 0.9375rem;">FriendsOfShopware</a>&nbsp;.&nbsp;<span
+    ="" style="font-size: 0.9375rem
+    ;">Maintainer from the plugin is:&nbsp;</span><a href="https://github.com/dneustadt" style="font-size: 0.9375rem;">David Neustadt</a></div>
+<div><span style="font-size: 0.9375rem;">You can find the Github repository&nbsp;</span><a
+        href="https://github.com/FriendsOfShopware/FroshHttpCacheIpExclude" style="font-size: 0.9375rem;">here</a></div>
+<div><a href="https://github.com/FriendsOfShopware/FroshHttpCacheIpExclude/issues/new">For questions or bugs please create a
+    Github Issue</a></div>
