@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label lang="de">HTTP Cache IP Filter</label>
-    <label lang="en">HTTP Cache IP Filter</label>
+    <label lang="de">HTTP Cache Weiche</label>
+    <label lang="en">HTTP Cache Switch</label>
 
     <version>1.0.0</version>
     <copyright>Friends of Shopware</copyright>
@@ -14,4 +14,15 @@
         <changes lang="de">Initial Release</changes>
         <changes lang="en">Initial Release</changes>
     </changelog>
+
+    <description>
+        <![CDATA[
+            Circumvent HTTP cache by IP, parameter or cookie
+        ]]>
+    </description>
+    <description lang="de">
+        <![CDATA[
+            HTTP Cache umgehen nach IP, Parameter oder Cookie
+        ]]>
+    </description>
 </plugin>
