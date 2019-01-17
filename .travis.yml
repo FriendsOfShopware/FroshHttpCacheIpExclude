@@ -16,7 +16,6 @@ env:
   matrix:
     - SHOPWARE_VERSION="5.4"
     - SHOPWARE_VERSION="5.5"
-    - SHOPWARE_VERSION="5.6"
   global:
     - PLUGIN_NAME=FroshHttpCacheIpExclude
     - SHOPWARE_DIRECTORY=${HOME}/shopware
@@ -81,5 +80,4 @@ jobs:
 
 matrix:
   allow_failures:
-  - env: SHOPWARE_VERSION="5.6"
   - php: nightly
